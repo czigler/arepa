@@ -1,6 +1,4 @@
-PowerPlants
-===========
+# arepa
 
-- ARP
 
-- AQS
+An R Package for EPA data retrieving and processing
