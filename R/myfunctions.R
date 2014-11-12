@@ -10,7 +10,7 @@ tortilla <- function(x) {
 }
 
 cruchade <- function(x) {
-  return(x)
+  return(x + 1)
 }
 
 #' Returns a list of two elements.
