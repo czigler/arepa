@@ -1,5 +1,11 @@
-##----- Retrieve zip codes
-
+#' Retrieve zip codes
+#' 		
+#' @param x Any R object.		
+#' @param y Any R object.		
+#' @return A list with first element \code{x} and second element \code{y}.		
+#' @examples		
+#' polenta(10, 1)		
+#' polenta("10", 1:5)
 get_zip_codes <- function() {
   data(zipcode)
   ZIP <- data.table(na.omit(zipcode))
