@@ -1,1 +1,3 @@
+import(data.table, reshape2, fields, tools, utils, zoo, zipcode, sp)
+
 exportPattern("^[[:alpha:]]+")

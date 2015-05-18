@@ -2,9 +2,11 @@ Package: arepa
 Type: Package
 Title: An R Package for EPA data retrieving and processing
 Version: 0.1
-Date: 2014-11-12
+Date: 2015-05-18
 Author: Christine Choirat
 Maintainer: Christine Choirat <cchoirat@gmail.com>
 Description: An R Package for EPA data retrieving and processing
 License: GPL (>=2)
+Depends:
+    data.table, reshape2, fields, tools, utils, zoo, zipcode, sp
 
