@@ -9,4 +9,3 @@ An R Package for EPA data retrieving and processing
 library(devtools)
 devtools::install_github("czigler/arepa")
 ```
-## How to
