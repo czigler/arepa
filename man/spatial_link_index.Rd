@@ -5,7 +5,7 @@
 \title{Spatial index distance matrix}
 \usage{
 spatial_link_index(data1, lat1, lon1, id1, data2, lat2, lon2, id2,
-  within = NULL)
+  within = NULL, closest = FALSE)
 }
 \arguments{
 \item{\code{data1}}{Dataset 1}
@@ -25,6 +25,8 @@ spatial_link_index(data1, lat1, lon1, id1, data2, lat2, lon2, id2,
 \item{\code{id2}}{Unique key in dataset 2}
 
 \item{\code{within}}{Link \code{within} kilometers}
+
+\item{\code{closest}}{Closest within Boolean (unique key is id2, so typically zip code)}
 }
 \value{
 This function returns a data table of pairwise distances \code{within}

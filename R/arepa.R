@@ -95,6 +95,7 @@ load_annual_average <- function(year) {
 #' @param \code{lon2} Longitude variable in dataset 2
 #' @param \code{id2} Unique key in dataset 2
 #' @param \code{within} Link \code{within} kilometers
+#' @param \code{closest} Closest within Boolean (unique key is id2, so typically zip code)
 #' 
 #' @return This function returns a data table of pairwise distances \code{within}
 #' kilometers with column names \code{id1}, \code{id2} and \code{Distance}.
@@ -114,7 +115,8 @@ load_annual_average <- function(year) {
 #' Link_PM_Zip_Index <- spatial_link_index(PM, "Latitude", "Longitude", "Monitor",
 #'                                         ZIP, "Latitude.zip", "Longitude.zip", "zip",
 #'                                         within = within_km) 
-spatial_link_index <- function(data1, lat1, lon1, id1, data2, lat2, lon2, id2, within = NULL) {
+spatial_link_index <- function(data1, lat1, lon1, id1, data2, lat2, lon2, id2,
+                               within = NULL, closest = FALSE) {
   if (!is.data.table(data1))
     data1 <- data.table(data1)
   if (!is.data.table(data2))
@@ -133,10 +135,18 @@ spatial_link_index <- function(data1, lat1, lon1, id1, data2, lat2, lon2, id2, w
   pairwise_distances_with_index <- data.table(cbind(id1, pairwise_distances))
   melted_pairwise_distances <- melt(pairwise_distances_with_index, id.vars = "id1")
   setnames(melted_pairwise_distances, old = names(melted_pairwise_distances), new = c(sId1, sId2, "Distance"))
-  if (is.null(within))
-    return(melted_pairwise_distances)
-  else
-    return(subset(melted_pairwise_distances, Distance < within))
+  if (!is.null(within))
+    melted_pairwise_distances <- subset(melted_pairwise_distances, Distance < within)
+  if (closest) {
+    melted_pairwise_distances[, Include.in.Average := 0]
+    setkeyv(melted_pairwise_distances, c("Distance"))
+    setkeyv(melted_pairwise_distances, sId2)
+    melted_pairwise_distances[melted_pairwise_distances[, .I[1], by = key(melted_pairwise_distances)]$V1, 
+                              Include.in.Average := 1]
+    melted_pairwise_distances <- subset(melted_pairwise_distances, Include.in.Average == 1)
+    melted_pairwise_distances[, Include.in.Average := NULL]
+  }
+  return(melted_pairwise_distances)
 }
 
 #' Create a subset of AQS monitors
