@@ -6,19 +6,14 @@
 \usage{
 get_zip_codes()
 }
-\arguments{
-\item{x}{Any R object.}
-
-\item{y}{Any R object.}
-}
 \value{
-A list with first element \code{x} and second element \code{y}.
+A data table with columns \code{city}, \code{state}, \code{latitude}
+and \code{longitude}.
 }
 \description{
 Retrieve zip codes
 }
 \examples{
-polenta(10, 1)
-polenta("10", 1:5)
+get_zip_codes()
 }
 
