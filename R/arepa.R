@@ -187,7 +187,7 @@ subset_monitors <- function(MONITORS,
   # Many monitors are lost
   # nrow(unique(PM[Valid.Day.Count >= 273], by = "Monitor"))
   # nrow(unique(PM, by = "Monitor"))
-  M <- M[Observation.Percent >= observation_percent]
+  M <- M[Observation.Percent >= observation_percent & Parameter.Code == parameter_code]
   ##----- If several POCs, pick first
   # Sort by Monitor (key1) and then POC (key2)
   setkeyv(M, c("Monitor", "POC", "Year"))
