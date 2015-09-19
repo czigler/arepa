@@ -84,6 +84,68 @@ load_annual_average <- function(year) {
   return(DO)
 }
 
+#' Download daily AQS datasets
+#'
+#' @param \code{parameter} Parameter code (e.g, 88101 for PM 2.5 FRM)
+#' @param \code{year} A year or list of years (from 1990 to 2014)
+#' 
+#' @return This function is used for its side-effects: it downloads annual AQS datasets
+#' from \url{http://aqsdr1.epa.gov/aqsweb/aqstmp/airdata/download_files.html}
+#' in local folder 'Data_AQS'.
+#' 
+#' @examples
+#' get_AQS_data_daily(2000:2002)
+get_AQS_data_daily <- function(parameter = 88101, year = 2002:2004) {
+  code <- paste0("daily_", parameter, "_")
+  name <- paste0("daily_", parameter)
+  dirdata <- file.path("Data_AQS", name)
+  dir.create(dirdata, showWarnings = FALSE)
+  files <- paste("http://aqsdr1.epa.gov/aqsweb/aqstmp/airdata/", code,
+                 year, ".zip", sep = "")
+  for (i in 1:length(files)) {
+    #----- Loop stage
+    print(year[i])
+    url <- files[i]
+    file <- basename(url)
+    download.file(url, file)
+    untar(file, compressed = 'gzip', exdir = dirdata)
+  }
+  print("Purge downloaded zip files")
+  zipfiles <- dir(path = ".",  pattern = "\\.zip$")
+  file.remove(zipfiles)
+}
+
+#' Load daily AQS datasets
+#' 
+#' @param \code{parameter} Parameter code (e.g, 88101 for PM 2.5 FRM)
+#' @param \code{year} A year or list of years (from 1990 to 2014)
+#' 
+#' @return This function returns a data table of annual AQS datasets previously
+#' downloaded in local folder 'Data_AQS' with function \code{\link{get_AQS_data_annual}}. A unique
+#' monitor key \code{Monitor} is created.
+#' 
+#' @examples
+#' get_AQS_data_annual(2000:2002)
+#' AQS <- load_daily_data(2000:2002)
+load_daily_data <- function(parameter = 88101, year = 2002:2004) {
+  code <- paste0("daily_", parameter, "_")
+  name <- paste0("daily_", parameter)
+  LO <- list()
+  for (i in seq(year)) {
+    #----- Loop stage
+    print(year[i])
+    LO[[i]] <- fread(file.path("Data_AQS", name, paste0(code, year[i], ".csv")))
+    setnames(LO[[i]], make.names(colnames(LO[[i]])))
+  }
+  DO <- rbindlist(LO)
+  ##----- Create unique monitor key 'Monitor'
+  DO[, Monitor := paste(sprintf("%02d", as.numeric(State.Code)),
+                        sprintf("%03d", as.numeric(County.Code)),
+                        "-",
+                        sprintf("%04d", as.numeric(Site.Num)), sep = "")]
+  return(DO)
+}
+
 #' Spatial index distance matrix
 #'
 #' @param \code{data1} Dataset 1
