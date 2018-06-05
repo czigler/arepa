@@ -26,7 +26,7 @@ get_zip_codes <- function() {
 
 #' Download annual AQS datasets
 #'
-#' @param \code{year} A year or list of years (from 1990 to 2014)
+#' @param \code{year} A year or list of years (from 1990 to 2018)
 #' 
 #' @return This function is used for its side-effects: it downloads annual AQS datasets
 #' from \url{http://aqsdr1.epa.gov/aqsweb/aqstmp/airdata/download_files.html}
@@ -56,7 +56,7 @@ get_AQS_data_annual <- function(year = 1990:2013) {
 
 #' Load annual AQS datasets
 #'
-#' @param \code{year} A year or list of years (from 1990 to 2014)
+#' @param \code{year} A year or list of years (from 1990 to 2018)
 #' 
 #' @return This function returns a data table of annual AQS datasets previously
 #' downloaded in local folder 'Data_AQS' with function \code{\link{get_AQS_data_annual}}. A unique
@@ -87,7 +87,7 @@ load_annual_average <- function(year) {
 #' Download daily AQS datasets
 #'
 #' @param \code{parameter} Parameter code (e.g, 88101 for PM 2.5 FRM)
-#' @param \code{year} A year or list of years (from 1990 to 2014)
+#' @param \code{year} A year or list of years (from 1990 to 2018)
 #' 
 #' @return This function is used for its side-effects: it downloads annual AQS datasets
 #' from \url{http://aqsdr1.epa.gov/aqsweb/aqstmp/airdata/download_files.html}
@@ -118,7 +118,7 @@ get_AQS_data_daily <- function(parameter = 88101, year = 2002:2004) {
 #' Load daily AQS datasets
 #' 
 #' @param \code{parameter} Parameter code (e.g, 88101 for PM 2.5 FRM)
-#' @param \code{year} A year or list of years (from 1990 to 2014)
+#' @param \code{year} A year or list of years (from 1990 to 2018)
 #' 
 #' @return This function returns a data table of annual AQS datasets previously
 #' downloaded in local folder 'Data_AQS' with function \code{\link{get_AQS_data_annual}}. A unique
@@ -163,7 +163,7 @@ load_daily_data <- function(parameter = 88101, year = 2002:2004) {
 #' kilometers with column names \code{id1}, \code{id2} and \code{Distance}.
 #' 
 #' @examples
-#' years <- 2000:2002 # possible range 1990-2014
+#' years <- 2000:2002 # possible range 1990-2018
 #' within_km <- 9.656 # 6 miles
 #' parameter_code <- 81102 # for PM 10
 #' ##----- Get PM10 annual data and set unique Monitor key

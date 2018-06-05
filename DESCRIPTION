@@ -9,4 +9,4 @@ Description: An R Package for EPA data retrieving and processing
 License: GPL (>=2)
 Depends:
     data.table, reshape2, fields, tools, utils, zoo, zipcode, sp
-
+RoxygenNote: 6.0.1
