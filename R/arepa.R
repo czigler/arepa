@@ -35,7 +35,7 @@ get_zip_codes <- function() {
 #' @examples
 #' get_AQS_data_annual(2000:2002)
 get_AQS_data_annual <- function(year = 1990:2013) {
-  code <- "annual_all_"
+  code <- "annual_conc_by_monitor_"
   name <- "all"
   dirdata <- file.path("Data_AQS", name)
   dir.create(dirdata, showWarnings = FALSE)
