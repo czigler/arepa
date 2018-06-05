@@ -7,7 +7,7 @@
 get_AQS_data_annual(year = 1990:2013)
 }
 \arguments{
-\item{\code{year}}{A year or list of years (from 1990 to 2014)}
+\item{\code{year}}{A year or list of years (from 1990 to 2018)}
 }
 \value{
 This function is used for its side-effects: it downloads annual AQS datasets

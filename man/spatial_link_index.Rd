@@ -36,7 +36,7 @@ kilometers with column names \code{id1}, \code{id2} and \code{Distance}.
 Spatial index distance matrix
 }
 \examples{
-years <- 2000:2002 # possible range 1990-2014
+years <- 2000:2002 # possible range 1990-2018
 within_km <- 9.656 # 6 miles
 parameter_code <- 81102 # for PM 10
 ##----- Get PM10 annual data and set unique Monitor key

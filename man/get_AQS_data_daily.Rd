@@ -9,7 +9,7 @@ get_AQS_data_daily(parameter = 88101, year = 2002:2004)
 \arguments{
 \item{\code{parameter}}{Parameter code (e.g, 88101 for PM 2.5 FRM)}
 
-\item{\code{year}}{A year or list of years (from 1990 to 2014)}
+\item{\code{year}}{A year or list of years (from 1990 to 2018)}
 }
 \value{
 This function is used for its side-effects: it downloads annual AQS datasets

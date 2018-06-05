@@ -39,7 +39,7 @@ get_AQS_data_annual <- function(year = 1990:2013) {
   name <- "all"
   dirdata <- file.path("Data_AQS", name)
   dir.create(dirdata, showWarnings = FALSE)
-  files <- paste("http://aqsdr1.epa.gov/aqsweb/aqstmp/airdata/", code,
+  files <- paste("https://aqs.epa.gov/aqsweb/airdata/", code,
                  year, ".zip", sep = "")
   for (i in 1:length(files)) {
     #----- Loop stage
@@ -100,7 +100,7 @@ get_AQS_data_daily <- function(parameter = 88101, year = 2002:2004) {
   name <- paste0("daily_", parameter)
   dirdata <- file.path("Data_AQS", name)
   dir.create(dirdata, showWarnings = FALSE)
-  files <- paste("http://aqsdr1.epa.gov/aqsweb/aqstmp/airdata/", code,
+  files <- paste("https://aqs.epa.gov/aqsweb/airdata/", code,
                  year, ".zip", sep = "")
   for (i in 1:length(files)) {
     #----- Loop stage

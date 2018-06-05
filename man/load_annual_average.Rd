@@ -7,7 +7,7 @@
 load_annual_average(year)
 }
 \arguments{
-\item{\code{year}}{A year or list of years (from 1990 to 2014)}
+\item{\code{year}}{A year or list of years (from 1990 to 2018)}
 }
 \value{
 This function returns a data table of annual AQS datasets previously
