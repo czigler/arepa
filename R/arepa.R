@@ -47,7 +47,7 @@ get_AQS_data_annual <- function(year = 1990:2013) {
     url <- files[i]
     file <- basename(url)
     download.file(url, file)
-    untar(file, compressed = 'gzip', exdir = dirdata)
+    unzip(file, exdir = dirdata)
   }
   print("Purge downloaded zip files")
   zipfiles <- dir(path = ".",  pattern = "\\.zip$")
@@ -66,10 +66,10 @@ get_AQS_data_annual <- function(year = 1990:2013) {
 #' get_AQS_data_annual(2000:2002)
 #' AQS <- load_annual_average(2000:2002)
 load_annual_average <- function(year) {
-  code <- "annual_all_"
+  code <- "annual_conc_by_monitor_"
   name <- "all"
   LO <- list()
-  for (i in seq(year)) {
+  for (i in seq(length(year))) {
     #----- Loop stage
     print(year[i])
     LO[[i]] <- fread(file.path("Data_AQS", name, paste0(code, year[i], ".csv")))
@@ -108,7 +108,7 @@ get_AQS_data_daily <- function(parameter = 88101, year = 2002:2004) {
     url <- files[i]
     file <- basename(url)
     download.file(url, file)
-    untar(file, compressed = 'gzip', exdir = dirdata)
+    unzip(file, exdir = dirdata)
   }
   print("Purge downloaded zip files")
   zipfiles <- dir(path = ".",  pattern = "\\.zip$")
