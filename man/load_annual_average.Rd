@@ -17,6 +17,20 @@ monitor key \code{Monitor} is created.
 \description{
 Load annual AQS datasets
 }
+\details{
+As part of the process in generating unique site codes, county and
+site numbers are coerced to be strings to provide standard formatting.
+As of the most recent package update, state codes are read in as strings
+precluding the need to convert the file. However, in the future, the 
+EPA may change the data format again, which may cause some errors in site
+code formatting. 
+
+The source of this data formatting is the inclustion of Canadian locations,
+which have the state code "CC"
+
+See this link for more information: 
+https://aqs.epa.gov/aqsweb/helpfiles/state_code.htm
+}
 \examples{
 get_AQS_data_annual(2000:2002)
 AQS <- load_annual_average(2000:2002)

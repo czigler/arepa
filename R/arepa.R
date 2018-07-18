@@ -62,6 +62,19 @@ get_AQS_data_annual <- function(year = 1990:2013) {
 #' downloaded in local folder 'Data_AQS' with function \code{\link{get_AQS_data_annual}}. A unique
 #' monitor key \code{Monitor} is created.
 #' 
+#' @details 
+#' As part of the process in generating unique site codes, county and
+#' site numbers are coerced to be strings to provide standard formatting.
+#' As of the most recent package update, state codes are read in as strings
+#' precluding the need to convert the file. However, in the future, the 
+#' EPA may change the data format again, which may cause some errors in site
+#' code formatting. 
+#' 
+#' The source of this data formatting is the inclustion of Canadian locations,
+#' which have the state code "CC"
+#' 
+#' See this link for more information: 
+#' https://aqs.epa.gov/aqsweb/helpfiles/state_code.htm
 #' @examples
 #' get_AQS_data_annual(2000:2002)
 #' AQS <- load_annual_average(2000:2002)
@@ -76,8 +89,9 @@ load_annual_average <- function(year) {
     setnames(LO[[i]], make.names(colnames(LO[[i]])))
   }
   DO <- rbindlist(LO)
+  is.data.table(DO)
   ##----- Create unique monitor key 'Monitor'
-  DO[, Monitor := paste(sprintf("%02d", as.numeric(State.Code)),
+  DO[, Monitor := paste(State.Code,
                         sprintf("%03d", as.numeric(County.Code)),
                         "-",
                         sprintf("%04d", as.numeric(Site.Num)), sep = "")]
@@ -120,6 +134,20 @@ get_AQS_data_daily <- function(parameter = 88101, year = 2002:2004) {
 #' @param \code{parameter} Parameter code (e.g, 88101 for PM 2.5 FRM)
 #' @param \code{year} A year or list of years (from 1990 to 2018)
 #' 
+#' @details 
+#' As part of the process in generating unique site codes, county and
+#' site numbers are coerced to be strings to provide standard formatting.
+#' As of the most recent package update, state codes are read in as strings
+#' precluding the need to convert the file. However, in the future, the 
+#' EPA may change the data format again, which may cause some errors in site
+#' code formatting. 
+#' 
+#' The source of this data formatting is the inclustion of Canadian locations,
+#' which have the state code "CC"
+#' 
+#' See this link for more information: 
+#' https://aqs.epa.gov/aqsweb/helpfiles/state_code.htm
+#' 
 #' @return This function returns a data table of annual AQS datasets previously
 #' downloaded in local folder 'Data_AQS' with function \code{\link{get_AQS_data_annual}}. A unique
 #' monitor key \code{Monitor} is created.
@@ -138,8 +166,9 @@ load_daily_data <- function(parameter = 88101, year = 2002:2004) {
     setnames(LO[[i]], make.names(colnames(LO[[i]])))
   }
   DO <- rbindlist(LO)
+  is.data.table(DO)
   ##----- Create unique monitor key 'Monitor'
-  DO[, Monitor := paste(sprintf("%02d", as.numeric(State.Code)),
+  DO[, Monitor := paste(State.Code,
                         sprintf("%03d", as.numeric(County.Code)),
                         "-",
                         sprintf("%04d", as.numeric(Site.Num)), sep = "")]
