@@ -10,6 +10,6 @@ License: GPL (>=2)
 Depends:
     data.table, reshape2, fields, tools, utils, zoo, sp
 Remote: 
-    github::NSAPH/zipcode
+    github::cran/zipcode
 RoxygenNote: 6.0.1
 Suggests: testthat
