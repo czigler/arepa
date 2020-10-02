@@ -8,6 +8,8 @@ Maintainer: Christine Choirat <cchoirat@gmail.com>
 Description: An R Package for EPA data retrieving and processing
 License: GPL (>=2)
 Depends:
-    data.table, reshape2, fields, tools, utils, zoo, zipcode, sp
+    data.table, reshape2, fields, tools, utils, zoo, sp
+Remote: 
+    github::NSAPH/zipcode
 RoxygenNote: 6.0.1
 Suggests: testthat
